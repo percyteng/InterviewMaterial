@@ -2,30 +2,38 @@ package dataStructure;
 
 import java.util.Arrays;
 
+import Graph.Vertex;
+
 //stack point: top element indicator, size, buffer(array), push, pop and peek.
 public class stack {
 	
-	private String[] stackArray;
+	private Vertex[] stackArray;
 	private int stackSize;
 	
 	// Sets stack as empty
 	
 	private int topOfStack = -1;
 	
-	stack(int size){
+	public stack(int size){
 		
 		stackSize = size;
 		
-		stackArray = new String[size];
+		stackArray = new Vertex[size];
 		
 		// Assigns the value of -1 to every value in the array
 		// so I control what gets printed to screen
 		
-		Arrays.fill(stackArray, "-1");
+		Arrays.fill(stackArray, null);
 		
 	}
-
-	public void push(String input){
+	public boolean isEmpty(){
+		for (Vertex v: stackArray){
+			if (v != null)
+				return false;
+		}
+		return true;
+	}
+	public void push(Vertex input){
 		
 		if(topOfStack+1 < stackSize){
 			
@@ -35,25 +43,25 @@ public class stack {
 			
 		} else System.out.println("Sorry But the Stack is Full");
 		
-		displayTheStack();
+//		displayTheStack();
 		
-		System.out.println("PUSH " + input + " Was Added to the Stack\n");
+		System.out.println("PUSH " + input.name + " Was Added to the Stack\n");
 		
 	}
 	
-	public String pop(){
+	public Vertex pop(){
 		
 		if(topOfStack >= 0){
 			
-			displayTheStack();
+//			displayTheStack();
 			
-			System.out.println("POP " + stackArray[topOfStack] + " Was Removed From the Stack\n");
+			System.out.println("POP " + stackArray[topOfStack].getName() + " Was Removed From the Stack\n");
 			
 			// Just like in memory an item isn't deleted, but instead is just not available
-			
-			stackArray[topOfStack] = "-1"; // Assigns -1 so the value won't appear
-			
-			return stackArray[topOfStack--];
+			Vertex popp = stackArray[topOfStack];
+			stackArray[topOfStack] = null; // Assigns -1 so the value won't appear
+			topOfStack--;
+			return popp;
 	
 			
 		} else {
@@ -62,13 +70,13 @@ public class stack {
 			
 			System.out.println("Sorry But the Stack is Empty");
 			
-			return "-1";
+			return null;
 		}
 		
 		
 	}
 	
-	public String peek(){
+	public Vertex peek(){
 		
 		displayTheStack();
 		
@@ -77,18 +85,18 @@ public class stack {
 		return stackArray[topOfStack];
 		
 	}
-	
-	public void pushMany(String multipleValues){
-		
-		String[] tempString = multipleValues.split(" ");
-		
-		for(int i = 0; i < tempString.length; i++){
-			
-			push(tempString[i]);
-			
-		}
-		
-	}
+//	
+//	public void pushMany(String multipleValues){
+//		
+//		String[] tempString = multipleValues.split(" ");
+//		
+//		for(int i = 0; i < tempString.length; i++){
+//			
+//			push(tempString[i]);
+//			
+//		}
+//		
+//	}
 	
 	public void popAll(){
 		
@@ -152,39 +160,39 @@ public class stack {
 		
 	}
 	
-	public static void main(String[] args){
-		
-		stack theStack = new stack(10);
-		
-		theStack.push("10");
-		theStack.push("17");
-		theStack.push("13");
-		
-		// Look at the top value on the stack
-		
-		theStack.peek();
-		
-		// Remove values from the stack (LIFO)
-		
-		theStack.pop();
-		theStack.pop();
-		theStack.pop();
-		
-		// Add many to the stack
-		
-		theStack.pushMany("R E D R U M");
-		
-		// Remove all from the stack
-		
-		// theStack.popAll();
-		
-		// Remove all from the stack and print them
-		
-		theStack.popDisplayAll();
-		
-		theStack.displayTheStack();
-		
-		
-	}
+//	public static void main(String[] args){
+//		
+//		stack theStack = new stack(10);
+//		
+////		theStack.push("10");
+////		theStack.push("17");
+////		theStack.push("13");
+//		
+//		// Look at the top value on the stack
+//		
+//		theStack.peek();
+//		
+//		// Remove values from the stack (LIFO)
+//		
+//		theStack.pop();
+//		theStack.pop();
+//		theStack.pop();
+//		
+//		// Add many to the stack
+//		
+////		theStack.pushMany("R E D R U M");
+//		
+//		// Remove all from the stack
+//		
+//		// theStack.popAll();
+//		
+//		// Remove all from the stack and print them
+//		
+//		theStack.popDisplayAll();
+//		
+//		theStack.displayTheStack();
+//		
+//		
+//	}
 	
 }

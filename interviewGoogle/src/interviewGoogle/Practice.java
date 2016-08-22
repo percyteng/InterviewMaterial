@@ -1,8 +1,12 @@
 package interviewGoogle;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+// practice site: http://javarevisited.blogspot.com/2011/06/top-programming-interview-questions.html
 public class Practice {
+	static int count = 0;
 	public static void main (String args[]){
 		System.out.println("hola");
 		System.out.println(isUnique("w"));
@@ -19,9 +23,47 @@ public class Practice {
 		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 		result = getSubsets(first,0);
 		System.out.println(result);
-		
+		System.out.println(palindrome("hoohla"));
+		System.out.println(removeGiven("holaaaaaewqew",'h'));
+		System.out.println(permutation("abc"));
+		System.out.println(permutationBetter("abc"));
+		System.out.println(longestPalindrome("hoohla"));
+		System.out.println(firstNoRepeat("holaho"));
+		System.out.println(countCha("addsec",'a'));
+		System.out.println((int)'z');
+		System.out.println(anagramAsc("AD","BC"));
+		int[] arr = new int[100];
+		for (int i = 1; i < 101; i++)
+			arr[i-1] = i;
+		arr[94] = -1;
+		arr[4] = -1;
 
-
+		arr[49] = -1;
+		ArrayList<Integer> ar = missingNumbers(arr);
+		for (int i = 0; i < ar.size(); i++){
+			System.out.println(ar.get(i));
+		}
+		arr[94] = 95;
+		arr[4] = 5;
+		arr[49] = 49;
+		System.out.println(checkOneDuplicated(arr));
+		arr[94] = 94;
+		arr[4] = 4;
+		ArrayList<Integer> set = checkMoreDuplicated(arr);
+		for (int i = 0 ; i < set.size(); i ++){
+			System.out.println("this is: " + set.get(i));
+		}
+	}
+	public static ArrayList<Integer> missingNumbers(int[] arr){
+		ArrayList<Integer> store = new ArrayList<Integer>();
+		ArrayList<Integer> count = new ArrayList<Integer>();
+		for (int a: arr)
+			store.add(a);
+		for (int i = 0; i < 100; i++){
+			if (!store.contains(i+1))
+				count.add(i);
+		}
+		return count;
 	}
 	public static boolean isUnique(String str){
 		boolean[] char_set = new boolean[256];
@@ -43,6 +85,17 @@ public class Practice {
 			}
 		}
 		return true;
+	}
+	public static boolean anagramAsc(String s1, String s2){
+		int count1 = 1, count2 = 1;
+		for (int i = 0; i < s1.length(); i++)
+			count1*= (int)s1.charAt(i);
+		for (int j = 0; j<s2.length();j++)
+			count2*=(int)s2.charAt(j);
+		if (count1 == count2)
+			return true;
+		else
+			return false;
 	}
 	public static boolean uniqueNoBuffer(String str){
 		for (int i = 0; i < str.length()-1; i ++){
@@ -154,4 +207,145 @@ public class Practice {
 		
 		return subsets;
 	}
+	public static boolean palindrome(String str){
+		if (str == null)
+			return false;
+		for (int i = 0; i < str.length()/2; i++){
+			if (str.charAt(i) != str.charAt(str.length()-1-i))
+				return false;
+		}
+		return true;
+	}
+	public static String removeGiven(String str, char given){
+		if (str == null)
+			return null;
+		else if(str == "")
+			return "";
+		for (int i = 0; i < str.length(); i++){
+			if (str.charAt(i) == given){
+				if (i == 0)
+					return str.substring(1);
+				else{
+					return str.substring(0, i) + str.substring(i+1,str.length());
+				}
+			}
+		}
+		return str;
+	}
+
+
+	private static ArrayList<String> permutation(String str) {
+	    int n = str.length();
+	    ArrayList<String> resu = new ArrayList<String>();
+	    if (n == 0) return resu;
+	    else if (n == 1){
+	    	resu.add(str);
+	    	return resu;
+	    }
+	    else {
+	        for (int i = 0; i < n; i++){
+	           ArrayList<String> result = permutation(str.substring(0, i) + str.substring(i+1, n));
+	           for (String st: result){
+	        	   count++;
+	        	   resu.add(str.charAt(i) + st);
+	           }
+	        }
+	    }
+	    return resu;
+	}
+	private static ArrayList<String> permutationBetter(String str) {
+	    int n = str.length();
+	    ArrayList<String> resu = new ArrayList<String>();
+	    if (n == 0){
+	    	resu.add("");
+	    	return resu;
+	    }
+	    else if (n == 1){
+	    	resu.add(str);
+	    	return resu;
+	    }
+    	ArrayList<String> remainder = permutationBetter(str.substring(1));
+        for (String st: remainder){
+        	for (int i = 0; i <= st.length(); i++){
+        	   resu.add(st.substring(0, i)+ str.charAt(0) + st.substring(i));
+
+
+        	}
+        }
+
+
+	    return resu;
+	}
+	public static String longestPalindrome(String str){
+		if (str.length() <=1)
+			return str;
+		for (int i = str.length(); i > 1; i--){
+			if (palindrome(str.substring(0,i)))
+				return str.substring(0,i);
+			
+		}
+		return Character.toString(str.charAt(0));
+	}
+	public static char firstNoRepeat(String str){
+		if (str.length() <= 1){
+			return str.charAt(0);
+		}
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		for (int i =0; i < str.length(); i++){
+			if (map.containsKey(str.charAt(i))){
+				int tmp = map.get(str.charAt(i));
+				map.put(str.charAt(i), tmp+1);
+			}
+			else{
+				map.put(str.charAt(i),1);
+			}
+		}
+		for (int j = 0; j < str.length(); j++){
+			if(map.get(str.charAt(j)) == 1)
+				return str.charAt(j);
+		}
+		return ' ';
+	}
+	public static int checkOneDuplicated(int[] arr){
+		HashSet<Integer> set = new HashSet<Integer>();
+		for (int i = 0; i < arr.length; i++){
+			if (!set.add(arr[i])){
+				return i;
+			}
+		}
+		for (int bro: set)
+			System.out.print(bro + ",");
+		return -1;
+	}
+	public static ArrayList<Integer> checkMoreDuplicated(int[] arr){
+
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		ArrayList<Integer> set = new ArrayList<Integer>();
+		if (arr.length <= 1){
+			set.add(arr[0]);
+			return set;
+		}
+		for (int i = 0; i < arr.length; i++){
+			if (map.containsKey(arr[i])){
+				map.put(arr[i], map.get(arr[i])+1);
+			}
+			else
+				map.put(arr[i],1);
+		}
+		for (int j = 1; j < map.size();j++){
+			if (map.get(j) != null &&map.get(j) > 1){
+				set.add(j);
+			}
+		}
+		return set;
+	}
+	public static int countCha(String str, char ch){
+		int count = 0;
+		for (int i = 0; i < str.length();i++){
+			if (str.charAt(i) == ch)
+				count++;
+		}
+		return count;
+	}
+	
 }

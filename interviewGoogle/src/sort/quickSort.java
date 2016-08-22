@@ -29,7 +29,7 @@ public class quickSort {
 	                  i++;
 	                  j--;
 	            }
-	      };
+	      }
 	      partitionRec(arr, left, i-1);
 	      partitionRec(arr, i, right);
 	     

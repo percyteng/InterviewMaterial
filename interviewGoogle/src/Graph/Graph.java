@@ -2,6 +2,9 @@ package Graph;
 
 import java.util.ArrayList;
 
+import Graph.Vertex.State;
+import dataStructure.stack;
+
 //One way to analyze these is in terms of memory and time complexity (which depends on how you want to access the graph).
 //
 //Storing nodes as objects with pointers to one another
@@ -56,8 +59,30 @@ public class Graph {
 		objects.get(4).connect(objects.get(3));
 		for (int i = 0; i < objects.size(); i++){
 			for (int j = 0; j < objects.get(i).edges.size(); j++){
-				System.out.println("Vertex: " + Integer.toString(objects.get(i).name) + " has edges: " + objects.get(i).edges.get(j).v1.name + ", " + objects.get(i).edges.get(j).v2.name);
+				System.out.println("Vertex: " + Integer.toString(objects.get(i).getName()) + " has edges: " + objects.get(i).edges.get(j).v1.getName() + ", " + objects.get(i).edges.get(j).v2.getName());
 			}
 		}
+		System.out.println(isPath(objects, objects.get(2),objects.get(3)));
+	}
+
+	public static boolean isPath(ArrayList<Vertex> Graph, Vertex start, Vertex end){
+		stack stackQ = new stack(10);
+		stackQ.push(start);
+		start.state = State.Visted;
+		while (!stackQ.isEmpty()){
+			Vertex tmp = stackQ.pop();
+			for (Vertex ad: tmp.getAdjacent()){
+				if (ad.state == State.Unvisited){
+					if (ad.getName() == end.getName()){
+						return true;
+					}
+					else{
+						ad.state = State.Visted;
+						stackQ.push(ad);
+					}
+				}
+			}
+		}
+		return false;
 	}
 }
