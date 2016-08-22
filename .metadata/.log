@@ -1,0 +1,105 @@
+!SESSION 2016-08-22 09:18:58.420 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_101
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -data C:\Users\tengs\Desktop\InterviewMaterial -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-08-22 09:19:11.760
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\tengs'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.buildship.core 2 0 2016-08-22 09:19:12.635
+!MESSAGE Could not load Gradle version information
+!STACK 0
+org.gradle.api.UncheckedIOException: Cannot download published Gradle versions.
+	at com.gradleware.tooling.toolingutils.distribution.PublishedGradleVersions.downloadVersionInformation(PublishedGradleVersions.java:175)
+	at com.gradleware.tooling.toolingutils.distribution.PublishedGradleVersions.tryToDownloadAndCacheVersions(PublishedGradleVersions.java:159)
+	at com.gradleware.tooling.toolingutils.distribution.PublishedGradleVersions.create(PublishedGradleVersions.java:119)
+	at org.eclipse.buildship.core.util.gradle.PublishedGradleVersionsWrapper$LoadVersionsJob.run(PublishedGradleVersionsWrapper.java:66)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.ssl.Alerts.getSSLException(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.fatal(Unknown Source)
+	at sun.security.ssl.Handshaker.fatalSE(Unknown Source)
+	at sun.security.ssl.Handshaker.fatalSE(Unknown Source)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(Unknown Source)
+	at sun.security.ssl.ClientHandshaker.processMessage(Unknown Source)
+	at sun.security.ssl.Handshaker.processLoop(Unknown Source)
+	at sun.security.ssl.Handshaker.process_record(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.readRecord(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(Unknown Source)
+	at com.gradleware.tooling.toolingutils.distribution.PublishedGradleVersions.downloadVersionInformation(PublishedGradleVersions.java:172)
+	... 4 more
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.validator.PKIXValidator.doBuild(Unknown Source)
+	at sun.security.validator.PKIXValidator.engineValidate(Unknown Source)
+	at sun.security.validator.Validator.validate(Unknown Source)
+	at sun.security.ssl.X509TrustManagerImpl.validate(Unknown Source)
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(Unknown Source)
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(Unknown Source)
+	... 18 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.provider.certpath.SunCertPathBuilder.build(Unknown Source)
+	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(Unknown Source)
+	at java.security.cert.CertPathBuilder.build(Unknown Source)
+	... 24 more
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 16 2016-08-22 09:19:12.650
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target. ; version: 2.0.1.v20160605-1811
+!STACK 0
+javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.ssl.Alerts.getSSLException(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.fatal(Unknown Source)
+	at sun.security.ssl.Handshaker.fatalSE(Unknown Source)
+	at sun.security.ssl.Handshaker.fatalSE(Unknown Source)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(Unknown Source)
+	at sun.security.ssl.ClientHandshaker.processMessage(Unknown Source)
+	at sun.security.ssl.Handshaker.processLoop(Unknown Source)
+	at sun.security.ssl.Handshaker.process_record(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.readRecord(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.createLayeredSocket(SSLConnectionSocketFactory.java:290)
+	at org.apache.http.impl.conn.HttpClientConnectionOperator.upgrade(HttpClientConnectionOperator.java:175)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.upgrade(PoolingHttpClientConnectionManager.java:334)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:398)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:219)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:86)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:108)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at org.apache.http.client.fluent.Executor.execute(Executor.java:206)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.request(IO.java:205)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:68)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:101)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.validator.PKIXValidator.doBuild(Unknown Source)
+	at sun.security.validator.PKIXValidator.engineValidate(Unknown Source)
+	at sun.security.validator.Validator.validate(Unknown Source)
+	at sun.security.ssl.X509TrustManagerImpl.validate(Unknown Source)
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(Unknown Source)
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(Unknown Source)
+	... 26 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.provider.certpath.SunCertPathBuilder.build(Unknown Source)
+	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(Unknown Source)
+	at java.security.cert.CertPathBuilder.build(Unknown Source)
+	... 32 more
